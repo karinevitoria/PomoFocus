@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomo_focus/screens/create_task.dart';
 import 'package:pomo_focus/screens/home_page.dart';
 
 class StartPage extends StatelessWidget {
@@ -34,7 +35,7 @@ class StartPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
+                  MaterialPageRoute(builder: (context) => HomePage()),
                 );
               },
               style: ButtonStyle(
