@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pomo_focus/screens/create_task.dart';
 import 'package:pomo_focus/screens/home_page.dart';
 
 class StartPage extends StatelessWidget {

@@ -43,9 +43,13 @@ class _TaskState extends State<Task> {
         }
       },
       child: Container(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
+          border: Border.all(
+            color: const Color.fromARGB(255, 0, 0, 0),
+            width: 1,
+          ),
         ),
         child: Row(
           children: [

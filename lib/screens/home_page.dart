@@ -34,16 +34,20 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Home Page'),
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 20),
+        padding: const EdgeInsets.all(2),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'To Do List',
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.w600,
+            const Padding(
+              padding:
+                  EdgeInsets.only(left: 8.0), // Padding específico para o Text
+              child: Text(
+                'To Do List',
+                style: TextStyle(
+                  fontSize: 40,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
             Expanded(
