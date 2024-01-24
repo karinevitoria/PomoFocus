@@ -75,7 +75,7 @@ class _TaskState extends State<Task> {
             if (widget.isUrgent && !isComplete)
               const Icon(
                 Icons.warning,
-                color: Colors.yellow,
+                color: Color.fromARGB(255, 255, 1, 1),
               ),
             if (isComplete)
               const Icon(

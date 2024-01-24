@@ -50,6 +50,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+            const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
                 itemCount: tasks.length,

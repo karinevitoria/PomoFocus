@@ -36,18 +36,27 @@ class _CreateTaskState extends State<CreateTask> {
                 ),
               ),
             ),
+            const SizedBox(height: 40),
             TextField(
               controller: titleController,
               decoration: const InputDecoration(
                 labelText: 'Title',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
               ),
             ),
+            const SizedBox(height: 20),
             TextField(
               controller: descriptionController,
               decoration: const InputDecoration(
                 labelText: 'Description',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
               ),
             ),
+            const SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(
                 color: Colors.red,
@@ -73,23 +82,35 @@ class _CreateTaskState extends State<CreateTask> {
                       style: TextStyle(color: Colors.white, fontSize: 18)),
                 ],
               ),
-            )
+            ),
+            const SizedBox(height: 20),
+            OutlinedButton(
+              onPressed: () {
+                Navigator.pop(
+                  context,
+                  Task(
+                    title: titleController.text,
+                    description: descriptionController.text,
+                    isUrgent: isUrgent,
+                  ),
+                );
+              },
+              style: ButtonStyle(
+                overlayColor: MaterialStateProperty.all(
+                    const Color.fromARGB(61, 0, 0, 0)),
+                minimumSize: MaterialStateProperty.all(const Size(350, 50)),
+                backgroundColor: MaterialStateProperty.all(Colors.white),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+              ),
+              child: const Text('Add',
+                  style: TextStyle(color: Colors.black, fontSize: 18)),
+            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pop(
-            context,
-            Task(
-              title: titleController.text,
-              description: descriptionController.text,
-              isUrgent: isUrgent,
-            ),
-          );
-        },
-        child: const Icon(Icons.add),
-        backgroundColor: Colors.green,
       ),
     );
   }

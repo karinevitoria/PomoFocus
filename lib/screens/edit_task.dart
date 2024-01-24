@@ -51,14 +51,27 @@ class _EditTaskState extends State<EditTask> {
                     fontWeight: FontWeight.w600,
                   ),
                 )),
+            const SizedBox(height: 40),
             TextField(
               controller: _titleController,
-              decoration: const InputDecoration(labelText: 'Title'),
+              decoration: const InputDecoration(
+                labelText: 'Title',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
+              ),
             ),
+            const SizedBox(height: 20),
             TextField(
               controller: _descriptionController,
-              decoration: const InputDecoration(labelText: 'Description'),
+              decoration: const InputDecoration(
+                labelText: 'Description',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
+              ),
             ),
+            const SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(
                 color: Colors.red,
@@ -85,8 +98,8 @@ class _EditTaskState extends State<EditTask> {
                 ],
               ),
             ),
-            ElevatedButton(
-              child: const Text('Save'),
+            const SizedBox(height: 20),
+            OutlinedButton(
               onPressed: () {
                 Navigator.pop(
                   context,
@@ -97,6 +110,19 @@ class _EditTaskState extends State<EditTask> {
                   },
                 );
               },
+              style: ButtonStyle(
+                overlayColor: MaterialStateProperty.all(
+                    const Color.fromARGB(61, 0, 0, 0)),
+                minimumSize: MaterialStateProperty.all(const Size(350, 50)),
+                backgroundColor: MaterialStateProperty.all(Colors.white),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+              ),
+              child: const Text('Edit',
+                  style: TextStyle(color: Colors.black, fontSize: 18)),
             ),
           ],
         ),
