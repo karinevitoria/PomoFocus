@@ -22,7 +22,7 @@ class StartPage extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             const SizedBox(
-              width: 380, // Ajuste a largura conforme desejado
+              width: 380,
               child: Text(
                 'the only productivity app you need.',
                 textAlign: TextAlign.center,
@@ -37,7 +37,7 @@ class StartPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
+                  MaterialPageRoute(builder: (context) => const HomePage()),
                 );
               },
               style: ButtonStyle(
@@ -51,7 +51,8 @@ class StartPage extends StatelessWidget {
                   ),
                 ),
               ),
-              child: const Text('start', style: TextStyle(color: Colors.black)),
+              child: const Text('start',
+                  style: TextStyle(fontFamily: 'Poppins', color: Colors.black)),
             ),
           ],
         ),

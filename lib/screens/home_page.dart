@@ -31,26 +31,30 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Page'),
+        centerTitle: true,
+        title: const Text(
+          'homepage',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontFamily: 'Montserrat', fontSize: 18),
+        ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(2),
+        padding: const EdgeInsets.all(10),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
-              padding:
-                  EdgeInsets.only(left: 8.0), // Padding específico para o Text
+              padding: EdgeInsets.only(left: 8.0),
               child: Text(
-                'To Do List',
+                'to do',
                 style: TextStyle(
-                  fontSize: 40,
+                  fontFamily: 'Montserrat',
+                  fontSize: 30,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             Expanded(
               child: ListView.builder(
                 itemCount: tasks.length,

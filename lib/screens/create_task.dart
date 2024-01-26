@@ -16,22 +16,19 @@ class _CreateTaskState extends State<CreateTask> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Create Task'),
-      ),
+      appBar: AppBar(),
       body: Padding(
-        padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+        padding: const EdgeInsets.all(20),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+          children: [
             const Padding(
-              padding:
-                  EdgeInsets.only(left: 1.0), // Padding específico para o Text
+              padding: EdgeInsets.only(left: 8.0),
               child: Text(
-                'Add new task',
+                'add a new task',
                 style: TextStyle(
-                  fontSize: 40,
+                  fontFamily: 'Montserrat',
+                  fontSize: 30,
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -40,7 +37,7 @@ class _CreateTaskState extends State<CreateTask> {
             TextField(
               controller: titleController,
               decoration: const InputDecoration(
-                labelText: 'Title',
+                labelText: 'title',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
@@ -48,42 +45,57 @@ class _CreateTaskState extends State<CreateTask> {
             ),
             const SizedBox(height: 20),
             TextField(
+              maxLines: 5,
               controller: descriptionController,
               decoration: const InputDecoration(
-                labelText: 'Description',
+                labelText: 'description',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
               ),
             ),
             const SizedBox(height: 20),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Checkbox(
-                    value: isUrgent,
-                    fillColor: MaterialStateProperty.all(Colors.white),
-                    checkColor: Colors.red,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  isUrgent = !isUrgent;
+                });
+              },
+              child: Container(
+                width: 150,
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Checkbox(
+                      value: isUrgent,
+                      fillColor: MaterialStateProperty.all(Colors.white),
+                      checkColor: Colors.red,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      onChanged: (bool? value) {
+                        setState(() {
+                          isUrgent = value ?? false;
+                        });
+                      },
                     ),
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isUrgent = value ?? false;
-                      });
-                    },
-                  ),
-                  const Text('Urgent',
-                      style: TextStyle(color: Colors.white, fontSize: 18)),
-                ],
+                    const Text('urgent',
+                        style: TextStyle(
+                            fontFamily: 'Poppins',
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500)),
+                  ],
+                ),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 35),
             OutlinedButton(
               onPressed: () {
                 Navigator.pop(
@@ -106,7 +118,7 @@ class _CreateTaskState extends State<CreateTask> {
                   ),
                 ),
               ),
-              child: const Text('Add',
+              child: const Text('add',
                   style: TextStyle(color: Colors.black, fontSize: 18)),
             ),
           ],
