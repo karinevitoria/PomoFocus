@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pomo_focus/screens/create_task.dart';
 import 'package:pomo_focus/screens/home_page.dart';
 
 class StartPage extends StatelessWidget {
@@ -17,17 +16,20 @@ class StartPage extends StatelessWidget {
               'welcome to pomofocus!',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.w600,
-              ),
+                  fontFamily: 'Montserrat',
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 30),
             const SizedBox(
               width: 380, // Ajuste a largura conforme desejado
               child: Text(
-                'the only productivity app you need. do you have an account?',
+                'the only productivity app you need.',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 18,
+                ),
               ),
             ),
             const SizedBox(height: 30),
