@@ -4,11 +4,13 @@ class EditTask extends StatefulWidget {
   final String title;
   final String description;
   final bool isUrgent;
+  final DateTime date;
 
   const EditTask({
     required this.title,
     required this.description,
     required this.isUrgent,
+    required this.date,
     Key? key,
   }) : super(key: key);
 
@@ -20,6 +22,7 @@ class _EditTaskState extends State<EditTask> {
   late TextEditingController _titleController;
   late TextEditingController _descriptionController;
   late bool _isUrgent;
+  late DateTime _date;
 
   @override
   void initState() {
@@ -27,6 +30,13 @@ class _EditTaskState extends State<EditTask> {
     _titleController = TextEditingController(text: widget.title);
     _descriptionController = TextEditingController(text: widget.description);
     _isUrgent = widget.isUrgent;
+    _date = widget.date;
+  }
+
+  String formatDate(DateTime date) {
+    final daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+    final dayOfWeek = daysOfWeek[date.weekday - 1];
+    return '$dayOfWeek, ${date.day}';
   }
 
   @override
@@ -72,30 +82,61 @@ class _EditTaskState extends State<EditTask> {
               ),
             ),
             const SizedBox(height: 20),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(5),
+            OutlinedButton(
+              child: Text(
+                formatDate(_date),
               ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Checkbox(
-                    value: _isUrgent,
-                    fillColor: MaterialStateProperty.all(Colors.white),
-                    checkColor: Colors.red,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
+              onPressed: () async {
+                final DateTime? picked = await showDatePicker(
+                  context: context,
+                  initialDate: _date,
+                  firstDate: DateTime(2000),
+                  lastDate: DateTime(2100),
+                );
+                if (picked != null && picked != _date) {
+                  setState(() {
+                    _date = picked;
+                  });
+                }
+              },
+            ),
+            const SizedBox(height: 20),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _isUrgent = !_isUrgent;
+                });
+              },
+              child: Container(
+                width: 150,
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Checkbox(
+                      value: _isUrgent,
+                      fillColor: MaterialStateProperty.all(Colors.white),
+                      checkColor: Colors.red,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      onChanged: (bool? value) {
+                        setState(() {
+                          _isUrgent = value ?? false;
+                        });
+                      },
                     ),
-                    onChanged: (bool? value) {
-                      setState(() {
-                        _isUrgent = value ?? false;
-                      });
-                    },
-                  ),
-                  const Text('Urgent',
-                      style: TextStyle(color: Colors.white, fontSize: 18)),
-                ],
+                    const Text('urgent',
+                        style: TextStyle(
+                            fontFamily: 'Poppins',
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500)),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -107,6 +148,7 @@ class _EditTaskState extends State<EditTask> {
                     'title': _titleController.text,
                     'description': _descriptionController.text,
                     'isUrgent': _isUrgent,
+                    'date': _date,
                   },
                 );
               },

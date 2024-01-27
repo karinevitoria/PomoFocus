@@ -63,6 +63,7 @@ class _HomePageState extends State<HomePage> {
                     title: tasks[index].title,
                     description: tasks[index].description,
                     isUrgent: tasks[index].isUrgent,
+                    date: tasks[index].date,
                   );
                 },
               ),

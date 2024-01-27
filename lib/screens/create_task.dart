@@ -12,6 +12,13 @@ class _CreateTaskState extends State<CreateTask> {
   final titleController = TextEditingController();
   final descriptionController = TextEditingController();
   bool isUrgent = false;
+  DateTime selectedDate = DateTime.now();
+
+  String formatDate(DateTime date) {
+    final daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+    final dayOfWeek = daysOfWeek[date.weekday - 1];
+    return '$dayOfWeek, ${date.day}';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +62,25 @@ class _CreateTaskState extends State<CreateTask> {
                 contentPadding:
                     EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
               ),
+            ),
+            const SizedBox(height: 20),
+            OutlinedButton(
+              child: Text(
+                selectedDate == null ? 'Select Date' : formatDate(selectedDate),
+              ),
+              onPressed: () async {
+                final DateTime? picked = await showDatePicker(
+                  context: context,
+                  initialDate: selectedDate,
+                  firstDate: DateTime(2000),
+                  lastDate: DateTime(2100),
+                );
+                if (picked != null && picked != selectedDate) {
+                  setState(() {
+                    selectedDate = picked;
+                  });
+                }
+              },
             ),
             const SizedBox(height: 20),
             GestureDetector(
@@ -104,6 +130,7 @@ class _CreateTaskState extends State<CreateTask> {
                     title: titleController.text,
                     description: descriptionController.text,
                     isUrgent: isUrgent,
+                    date: selectedDate,
                   ),
                 );
               },

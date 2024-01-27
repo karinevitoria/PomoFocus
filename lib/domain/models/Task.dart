@@ -5,12 +5,14 @@ class Task extends StatefulWidget {
   String title;
   String description;
   bool isUrgent;
+  DateTime date;
 
   Task(
       {super.key,
       required this.title,
       required this.description,
-      this.isUrgent = false});
+      this.isUrgent = false,
+      required this.date});
 
   @override
   _TaskState createState() => _TaskState();
@@ -30,6 +32,7 @@ class _TaskState extends State<Task> {
               title: widget.title,
               description: widget.description,
               isUrgent: widget.isUrgent,
+              date: widget.date,
             ),
           ),
         );
@@ -39,6 +42,7 @@ class _TaskState extends State<Task> {
             widget.title = result['title'];
             widget.description = result['description'];
             widget.isUrgent = result['isUrgent'];
+            widget.date = result['date'];
           });
         }
       },
