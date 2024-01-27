@@ -14,6 +14,15 @@ class Task extends StatefulWidget {
       this.isUrgent = false,
       required this.date});
 
+  Task.fromMap(Map map, {super.key})
+      : title = map['title'],
+        description = map['description'],
+        isUrgent = map['isUrgent'];
+
+  Map toMap() {
+    return {'title': title, 'description': description, 'isUrgent': isUrgent};
+  }
+
   @override
   _TaskState createState() => _TaskState();
 }

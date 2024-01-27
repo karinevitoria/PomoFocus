@@ -1,6 +1,8 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../domain/models/Task.dart';
 import 'create_task.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,6 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Task> tasks = [];
+  late SharedPreferences sharedPreferences;
 
   void _createTask() async {
     final newTask = await Navigator.push<Task>(
@@ -23,8 +26,39 @@ class _HomePageState extends State<HomePage> {
     if (newTask != null) {
       setState(() {
         tasks.add(newTask);
+        saveData();
       });
     }
+  }
+
+  @override
+  void initState() {
+    loadSharedPreferencesAndData();
+    super.initState();
+  }
+
+  void loadSharedPreferencesAndData() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    loadData();
+  }
+
+  void loadData() {
+    List<String>? listString = sharedPreferences.getStringList('tasks');
+    if (listString != null) {
+      tasks =
+          listString.map((item) => Task.fromMap(json.decode(item))).toList();
+      setState(() {});
+    }
+  }
+
+  initSharedPreferences() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+  }
+
+  void saveData() {
+    List<String> stringList =
+        tasks.map((item) => json.encode(item.toMap())).toList();
+    sharedPreferences.setStringList('tasks', stringList);
   }
 
   @override
