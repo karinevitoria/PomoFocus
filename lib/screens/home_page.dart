@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
             const Padding(
               padding: EdgeInsets.only(left: 8.0),
               child: Text(
-                'to do',
+                'To do list',
                 style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 30,

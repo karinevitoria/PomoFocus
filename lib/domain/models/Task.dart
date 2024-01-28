@@ -17,10 +17,16 @@ class Task extends StatefulWidget {
   Task.fromMap(Map map, {super.key})
       : title = map['title'],
         description = map['description'],
-        isUrgent = map['isUrgent'];
+        isUrgent = map['isUrgent'],
+        date = map['date'];
 
   Map toMap() {
-    return {'title': title, 'description': description, 'isUrgent': isUrgent};
+    return {
+      'title': title,
+      'description': description,
+      'isUrgent': isUrgent,
+      'date': date.toIso8601String()
+    };
   }
 
   @override

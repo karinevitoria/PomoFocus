@@ -32,7 +32,7 @@ class _CreateTaskState extends State<CreateTask> {
             const Padding(
               padding: EdgeInsets.only(left: 8.0),
               child: Text(
-                'add a new task',
+                'Add new task',
                 style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 30,
