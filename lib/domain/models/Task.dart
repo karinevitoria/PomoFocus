@@ -18,7 +18,7 @@ class Task extends StatefulWidget {
       : title = map['title'],
         description = map['description'],
         isUrgent = map['isUrgent'],
-        date = map['date'];
+        date = DateTime.parse(map['date']);
 
   Map toMap() {
     return {

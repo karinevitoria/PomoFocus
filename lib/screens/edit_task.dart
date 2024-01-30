@@ -33,12 +33,6 @@ class _EditTaskState extends State<EditTask> {
     _date = widget.date;
   }
 
-  String formatDate(DateTime date) {
-    final daysOfWeek = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-    final dayOfWeek = daysOfWeek[date.weekday - 1];
-    return '$dayOfWeek, ${date.day}';
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,9 +77,7 @@ class _EditTaskState extends State<EditTask> {
             ),
             const SizedBox(height: 20),
             OutlinedButton(
-              child: Text(
-                formatDate(_date),
-              ),
+              child: Text(_date.toString().substring(0, 10)),
               onPressed: () async {
                 final DateTime? picked = await showDatePicker(
                   context: context,

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:pomo_focus/screens/calendar_page.dart';
 import '../domain/models/Task.dart';
 import 'create_task.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -102,6 +103,15 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
+            OutlinedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CalendarPage()),
+                );
+              },
+              child: Text('Go to Calendar'),
+            )
           ],
         ),
       ),
