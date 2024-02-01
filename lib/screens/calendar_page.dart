@@ -16,9 +16,10 @@ class _CalendarPageState extends State<CalendarPage> {
   List<Task> tasksForDate = [];
 
   @override
-  void initState() {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     loadSharedPreferencesAndData();
-    super.initState();
+    filterTasksForSelectedDate();
   }
 
   void loadSharedPreferencesAndData() async {
@@ -40,11 +41,11 @@ class _CalendarPageState extends State<CalendarPage> {
   }
 
   void filterTasksForSelectedDate() {
-    tasksForDate = tasks
-        .where((task) => isSameDay(task.date, selectedDate))
-        .toList(); // Filter tasks for the selected date;
-    setState(() {});
-    print(tasksForDate);
+    tasksForDate = tasks.where((task) {
+      return task.date.year == selectedDate.year &&
+          task.date.month == selectedDate.month &&
+          task.date.day == selectedDate.day;
+    }).toList();
   }
 
   @override

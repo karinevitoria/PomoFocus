@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../screens/edit_task.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pomo_focus/screens/home_page.dart';
+import 'dart:convert';
 
 class Task extends StatefulWidget {
   String title;
@@ -35,31 +38,78 @@ class Task extends StatefulWidget {
 
 class _TaskState extends State<Task> {
   bool isComplete = false;
+  Future<SharedPreferences> sharedPreferences = SharedPreferences.getInstance();
+
+  @override
+  void initState() {
+    super.initState();
+    initSharedPreferences();
+    loadData();
+  }
+
+  void _editTask() async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EditTask(
+          title: widget.title,
+          description: widget.description,
+          isUrgent: widget.isUrgent,
+          date: widget.date,
+        ),
+      ),
+    );
+
+    if (result != null) {
+      setState(() {
+        widget.title = result['title'];
+        widget.description = result['description'];
+        widget.isUrgent = result['isUrgent'];
+        widget.date = result['date'];
+        saveData();
+      });
+    }
+  }
+
+  initSharedPreferences() async {
+    sharedPreferences =
+        (await SharedPreferences.getInstance()) as Future<SharedPreferences>;
+  }
+
+  void saveData() async {
+    final prefs = await sharedPreferences;
+    String key = 'task_${widget.date.millisecondsSinceEpoch}';
+    Map<String, dynamic> taskMap = {
+      'title': widget.title,
+      'description': widget.description,
+      'isUrgent': widget.isUrgent,
+      'date': widget.date.toIso8601String(),
+    };
+    String jsonString = json.encode(taskMap);
+    prefs.setString(key, jsonString);
+  }
+
+  void loadData() async {
+    final prefs = await sharedPreferences;
+    String key = 'task_${widget.date.millisecondsSinceEpoch}';
+    String? jsonString = prefs.getString(key);
+
+    if (jsonString != null) {
+      Map<String, dynamic> taskMap = json.decode(jsonString);
+      setState(() {
+        widget.title = taskMap['title'];
+        widget.description = taskMap['description'];
+        widget.isUrgent = taskMap['isUrgent'];
+        widget.date = DateTime.parse(taskMap['date']);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () async {
-        final result = await Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => EditTask(
-              title: widget.title,
-              description: widget.description,
-              isUrgent: widget.isUrgent,
-              date: widget.date,
-            ),
-          ),
-        );
-
-        if (result != null) {
-          setState(() {
-            widget.title = result['title'];
-            widget.description = result['description'];
-            widget.isUrgent = result['isUrgent'];
-            widget.date = result['date'];
-          });
-        }
+      onTap: () {
+        _editTask();
       },
       child: Container(
         padding: const EdgeInsets.only(left: 16, top: 16, bottom: 16),
