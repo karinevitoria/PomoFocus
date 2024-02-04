@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../screens/edit_task.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:pomo_focus/screens/home_page.dart';
 import 'dart:convert';
 
 class Task extends StatefulWidget {

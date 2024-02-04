@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../domain/models/Task.dart';
+import 'package:pomo_focus/screens/components/bottom_navigation_bar.dart';
 
 class CreateTask extends StatefulWidget {
   CreateTask({Key? key}) : super(key: key);
@@ -17,6 +18,7 @@ class _CreateTaskState extends State<CreateTask> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomNavigationBar(),
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(20),

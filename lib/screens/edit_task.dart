@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomo_focus/screens/components/bottom_navigation_bar.dart';
 
 class EditTask extends StatefulWidget {
   final String title;
@@ -36,6 +37,7 @@ class _EditTaskState extends State<EditTask> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const CustomNavigationBar(),
       appBar: AppBar(
         title: const Text('Edit Task'),
       ),

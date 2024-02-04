@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:pomo_focus/screens/calendar_page.dart';
 import '../domain/models/Task.dart';
 import 'create_task.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pomo_focus/screens/components/bottom_navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -65,14 +65,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          'homepage',
-          textAlign: TextAlign.center,
-          style: TextStyle(fontFamily: 'Montserrat', fontSize: 18),
-        ),
-      ),
+      bottomNavigationBar: const CustomNavigationBar(),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -103,15 +96,6 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
-            OutlinedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CalendarPage()),
-                );
-              },
-              child: Text('Go to Calendar'),
-            )
           ],
         ),
       ),

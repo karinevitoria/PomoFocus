@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:pomo_focus/screens/components/bottom_navigation_bar.dart';
 import '../domain/models/Task.dart';
 
 class CalendarPage extends StatefulWidget {
@@ -51,8 +51,9 @@ class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const CustomNavigationBar(),
       appBar: AppBar(
-        title: Text('Calendar'),
+        title: const Text('Calendar'),
       ),
       body: Column(
         children: [
