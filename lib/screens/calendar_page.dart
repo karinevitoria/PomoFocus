@@ -51,10 +51,6 @@ class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const CustomNavigationBar(),
-      appBar: AppBar(
-        title: const Text('Calendar'),
-      ),
       body: Column(
         children: [
           CalendarDatePicker(

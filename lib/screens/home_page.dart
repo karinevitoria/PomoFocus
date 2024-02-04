@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:pomo_focus/controllers/redirect.dart';
+import 'package:pomo_focus/screens/create_task.dart';
 import '../domain/models/Task.dart';
-import 'create_task.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:pomo_focus/screens/components/bottom_navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -65,7 +65,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const CustomNavigationBar(),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(

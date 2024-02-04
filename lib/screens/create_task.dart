@@ -18,7 +18,6 @@ class _CreateTaskState extends State<CreateTask> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomNavigationBar(),
       appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(20),

@@ -37,7 +37,6 @@ class _EditTaskState extends State<EditTask> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const CustomNavigationBar(),
       appBar: AppBar(
         title: const Text('Edit Task'),
       ),

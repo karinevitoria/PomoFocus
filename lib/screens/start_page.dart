@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pomo_focus/controllers/redirect.dart';
 import 'package:pomo_focus/screens/home_page.dart';
 
 class StartPage extends StatelessWidget {
@@ -35,10 +36,8 @@ class StartPage extends StatelessWidget {
             const SizedBox(height: 30),
             OutlinedButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const HomePage()),
-                );
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => RedirectPage()));
               },
               style: ButtonStyle(
                 overlayColor: MaterialStateProperty.all(
